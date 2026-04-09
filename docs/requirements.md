@@ -131,3 +131,21 @@
     - ***Acceptance Criteria***:
         - The "History" view must show a table of past registries.
         - Each registry must include the timestamp, user, and items delivered/received.
+
+##### 6. User Interface & Experience
+
+- **US 6.1** - **Modern Dashboard Navigation**: As a user, I want a sidebar-based navigation system, so that I can easily switch between the Note Generator, History, Database, Settings and About sections without opening multiple windows.
+    - ***Acceptance Criteria***:
+        - The sidebar must be persistent on the left side of the app.
+        - Clicking a menu item must swap the main content area without flickering or losing state.
+        - The current organization logo must be visible at the top or bottom of the sidebar.
+
+- **US 6.2** - **Adaptive Form Layout**: As a user, I want the form fields to be organized in a clean, modern grid that adapts to the window size, so that the app is comfortable to use on different monitors.
+    - ***Acceptance Criteria**:
+        - The UI must use custom CSS (modern flat design, specific organization colors).
+        - Fields must be grouped logically (user info, item list, action buttons).
+
+- **US 6.3** - **Visual Feedback & Status**: As a user, I want to see visual indicators for the server connection and system status, so that I know if I am working in "Offline/Cache" mode or connected to the API.
+    - ***Acceptance Criteria***:
+        - A status bar or header icon must show a green/red indicator for the Spring Boot API connection.
+        - A warning message must appear if the app falls back to the local `.sqlite` cache.
