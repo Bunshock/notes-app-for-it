@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import org.controlsfx.control.SearchableComboBox?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.bunshock.note_app_for_it_frontend.UEntregaController">
+    <children>
+        <VBox spacing="10" style="-fx-border-color: #ddd; -fx-border-width: 0 0 1 0; -fx-padding: 0 0 15 0;">
+            <children>
+                <Label text="Datos del Usuario" style="-fx-font-weight: bold; -fx-font-size: 16; -fx-text-fill: #0c8570;"/>
+                <GridPane hgap="15" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints prefWidth="120"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+                    <children>
+                        <Label text="DNI:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <TextField fx:id="txtUserDni" promptText="Ej: 35123456" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                        
+                        <Label text="Nombre Completo:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <TextField fx:id="txtUserName" editable="false" style="-fx-background-color: #f0f0f0;" promptText="Se autocompleta al ingresar DNI..." GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                    </children>
+                </GridPane>
+            </children>
+        </VBox>
+
+        <VBox spacing="10">
+            <children>
+                <Label text="Detalles del Equipamiento" style="-fx-font-weight: bold; -fx-font-size: 16; -fx-text-fill: #0c8570;"/>
+                <GridPane hgap="15" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints prefWidth="120"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+                    <children>
+                        <Label text="Tipo de Item:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <SearchableComboBox fx:id="cmbItemType" promptText="Monitor, Notebook, Teclado..." GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                        
+                        <Label text="Número de Serie:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <TextField fx:id="txtSerialNumber" promptText="S/N o Service Tag" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                        
+                        <Label text="Observaciones:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                        <TextArea fx:id="txtObservations" prefHeight="80" promptText="Ej: Se entrega con cargador..." wrapText="true" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                    </children>
+                </GridPane>
+            </children>
+        </VBox>
+        
+        <HBox alignment="CENTER_RIGHT" spacing="10" style="-fx-padding: 20 0 0 0;">
+            <children>
+                <Button text="Limpiar Formulario" style="-fx-background-color: transparent; -fx-text-fill: #666;"/>
+                <Button text="Generar PDF y Registrar" style="-fx-background-color: #0c8570; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20 10 20;"/>
+            </children>
+        </HBox>
+    </children>
+</VBox>
