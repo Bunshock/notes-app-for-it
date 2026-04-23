@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<BorderPane fx:id="rootPane" prefHeight="750.0" prefWidth="1125.0" 
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.bunshock.note_app_for_it_frontend.MainController"
+            stylesheets="@styles.css">
+   <fx:define>
+      <ToggleGroup fx:id="navigationGroup" />
+   </fx:define>
+   
+   <left>
+      <VBox styleClass="sidebar">
+         <children>
+            <!-- Title -->
+            <VBox alignment="CENTER_LEFT" spacing="2" style="-fx-padding: 0 0 25 0;">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="10">
+                        <children>
+                           <Region prefWidth="4" prefHeight="25" style="-fx-background-color: #4db6ac; -fx-background-radius: 2;"/>
+                           <Label text="MOVIMIENTOS" styleClass="sidebar-title-main"/>
+                        </children>
+                  </HBox>
+                  <Label text="SOPORTE IT - SITA - UES21" styleClass="sidebar-title-sub" style="-fx-padding: 0 0 0 14;"/>
+                  <Region prefHeight="1" style="-fx-background-color: rgba(255,255,255,0.1); -fx-min-height: 1; -fx-translate-y: 10;"/>
+               </children>
+            </VBox>
+
+            <!-- User info and welcome message -->
+            <VBox spacing="2" style="-fx-padding: 0 0 15 5;">
+               <children>
+                  <Label fx:id="lblWelcome" styleClass="user-welcome"/>
+                  <Label fx:id="lblUsername" styleClass="user-username"/>
+               </children>
+            </VBox>
+
+            <!-- Top navigation buttons -->
+            <ToggleButton text="Generar Nota" fx:id="btnGenerator" toggleGroup="$navigationGroup"
+                  maxWidth="Infinity" styleClass="nav-button" selected="true" onAction="#handleShowGenerator"/>
+            <ToggleButton text="Historial" fx:id="btnHistory" toggleGroup="$navigationGroup"
+                  maxWidth="Infinity" styleClass="nav-button"/>
+            <ToggleButton text="Datos" fx:id="btnData" toggleGroup="$navigationGroup"
+                  maxWidth="Infinity" styleClass="nav-button"/>
+
+            <Region VBox.vgrow="ALWAYS" />
+
+            <!-- Bottom navigation buttons -->
+            <ToggleButton text="Mi Perfil" fx:id="btnProfile" toggleGroup="$navigationGroup"
+                  maxWidth="Infinity" styleClass="nav-button"/>
+            <ToggleButton text="Configuración" fx:id="btnSettings" toggleGroup="$navigationGroup"
+                  maxWidth="Infinity" styleClass="nav-button"/>
+            <ToggleButton text="Acerca de" fx:id="btnAbout" toggleGroup="$navigationGroup"
+                  maxWidth="Infinity" styleClass="nav-button"/>
+
+            <!-- Logo -->
+            <StackPane style="-fx-padding: 20 0 0 0;"> 
+               <children>
+                  <StackPane styleClass="logo-frame">
+                     <children>
+                        <ImageView fx:id="imgLogo" fitWidth="120.0" preserveRatio="true">
+                           <image>
+                              <Image url="@images/logo.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+   </left>
+   
+   <center>
+      <StackPane fx:id="contentArea">
+         <Label text="Seleccione una opción de la barra lateral para comenzar." />
+      </StackPane>
+   </center>
+</BorderPane>
