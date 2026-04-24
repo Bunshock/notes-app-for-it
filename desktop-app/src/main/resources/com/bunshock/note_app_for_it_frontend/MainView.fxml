@@ -3,8 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.shape.Circle?>
 
-<BorderPane fx:id="rootPane" prefHeight="750.0" prefWidth="1125.0" 
+<BorderPane fx:id="rootPane" prefHeight="850" prefWidth="1275.0" 
             xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.bunshock.note_app_for_it_frontend.MainController"
             stylesheets="@styles.css">
@@ -15,6 +16,22 @@
    <left>
       <VBox styleClass="sidebar">
          <children>
+
+            <!-- Logo -->
+            <StackPane style="-fx-padding: 0 0 0 0;"> 
+               <children>
+                  <StackPane styleClass="logo-frame">
+                     <children>
+                        <ImageView fx:id="imgLogo" fitWidth="120.0" preserveRatio="true">
+                           <image>
+                              <Image url="@images/logo.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </children>
+            </StackPane>
+
             <!-- Title -->
             <VBox alignment="CENTER_LEFT" spacing="2" style="-fx-padding: 0 0 25 0;">
                <children>
@@ -55,20 +72,35 @@
             <ToggleButton text="Acerca de" fx:id="btnAbout" toggleGroup="$navigationGroup"
                   maxWidth="Infinity" styleClass="nav-button"/>
 
-            <!-- Logo -->
-            <StackPane style="-fx-padding: 20 0 0 0;"> 
+            <!-- Server status -->
+            <VBox spacing="8" style="-fx-padding: 15 0 0 0;">
                <children>
-                  <StackPane styleClass="logo-frame">
+                  <Label text="ESTADO DE SERVICIOS" style="-fx-text-fill: rgba(255,255,255,0.5); -fx-font-size: 9px; -fx-font-weight: bold; -fx-letter-spacing: 1px;"/>
+                  <!-- Active Directory -->
+                  <HBox alignment="CENTER_LEFT" spacing="10">
                      <children>
-                        <ImageView fx:id="imgLogo" fitWidth="120.0" preserveRatio="true">
-                           <image>
-                              <Image url="@images/logo.jpg" />
-                           </image>
-                        </ImageView>
+                        <Circle fx:id="circleAD" radius="5.0" fill="#ff9800" stroke="#ffffff" strokeWidth="1.0" />
+                        <Label text="Active Directory (AD)" style="-fx-text-fill: white; -fx-font-size: 11px;">
+                              <tooltip>
+                                 <Tooltip fx:id="tooltipAD" text="Verificando estado..." />
+                              </tooltip>
+                        </Label>
                      </children>
-                  </StackPane>
+                  </HBox>
+                  <!-- GLPI API -->
+                  <HBox alignment="CENTER_LEFT" spacing="10">
+                        <children>
+                           <Circle fx:id="circleGLPI" radius="5.0" fill="#f44336" stroke="#ffffff" strokeWidth="1.0" />
+                           <Label text="GLPI API" style="-fx-text-fill: white; -fx-font-size: 11px;">
+                              <tooltip>
+                                 <Tooltip fx:id="tooltipGLPI" text="Verificando estado..." />
+                              </tooltip>
+                           </Label>
+                        </children>
+                  </HBox>
                </children>
-            </StackPane>
+            </VBox>
+
          </children>
       </VBox>
    </left>
