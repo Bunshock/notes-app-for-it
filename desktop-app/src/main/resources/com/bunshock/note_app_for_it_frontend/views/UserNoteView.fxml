@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import org.controlsfx.control.SearchableComboBox?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.bunshock.note_app_for_it_frontend.controllers.UserNoteController">
+    <children>
+
+        <!-- User Note Type Selection -->
+        <VBox spacing="0" style="-fx-padding: 0 0 5 0;">
+            <children>
+                <Label text="TIPO DE MOVIMIENTO" styleClass="form-section-caption"/>
+                <HBox prefHeight="40.0" spacing="0">
+                    <fx:define>
+                        <ToggleGroup fx:id="typeGroup" />
+                    </fx:define>
+                    <children>
+                        <ToggleButton fx:id="btnTypeEntrega" text="ENTREGA" selected="true"
+                                    maxWidth="Infinity" HBox.hgrow="ALWAYS" styleClass="type-button-left" toggleGroup="$typeGroup"/>
+                        <ToggleButton fx:id="btnTypeDevolucion" text="DEVOLUCIÓN" 
+                                    maxWidth="Infinity" HBox.hgrow="ALWAYS" styleClass="type-button-middle" toggleGroup="$typeGroup"/>
+                        <ToggleButton fx:id="btnTypePrestamo" text="PRÉSTAMO" 
+                                    maxWidth="Infinity" HBox.hgrow="ALWAYS" styleClass="type-button-middle" toggleGroup="$typeGroup"/>
+                        <ToggleButton fx:id="btnTypeFinContrato" text="FIN DE CONTRATO (ENTREGA)" 
+                                    maxWidth="Infinity" HBox.hgrow="ALWAYS" styleClass="type-button-right" toggleGroup="$typeGroup"/>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+
+        <Separator style="-fx-opacity: 0.5;"/>
+
+        <!-- User details -->
+        <VBox spacing="10">
+           <children>
+               <Label text="DATOS DEL USUARIO" style="-fx-font-weight: bold; -fx-text-fill: #0c8570; -fx-font-size: 13px;"/>
+               <GridPane hgap="15" vgap="5">
+                   <columnConstraints>
+                       <ColumnConstraints percentWidth="25"/>
+                       <ColumnConstraints percentWidth="40"/>
+                       <ColumnConstraints percentWidth="35"/>
+                   </columnConstraints>
+                   <children>
+                       <VBox spacing="2" GridPane.columnIndex="0">
+                           <Label text="DNI" styleClass="input-label-small"/>
+                           <TextField fx:id="txtUserDni" promptText="DNI" styleClass="form-input-main"/>
+                       </VBox>
+                       <VBox spacing="2" GridPane.columnIndex="1">
+                           <Label text="NOMBRE COMPLETO" styleClass="input-label-small"/>
+                           <TextField fx:id="txtUserName" editable="false" styleClass="form-input-disabled"/>
+                       </VBox>
+                       <VBox spacing="2" GridPane.columnIndex="2">
+                           <Label text="EMAIL" styleClass="input-label-small"/>
+                           <TextField fx:id="txtUserEmail" editable="false" styleClass="form-input-disabled"/>
+                       </VBox>
+                   </children>
+               </GridPane>
+           </children>
+       </VBox>
+
+        <!-- Equipment details -->
+       <VBox spacing="10" VBox.vgrow="ALWAYS">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <children>
+                        <Label text="DETALLES DEL EQUIPO" style="-fx-font-weight: bold; -fx-text-fill: #0c8570; -fx-font-size: 13px;"/>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button text="+ Agregar Item" onAction="#handleAddItem" style="-fx-background-color: #0c8570; -fx-text-fill: white; -fx-font-size: 11;"/>
+                    </children>
+                </HBox>
+                
+                <TableView fx:id="tblEquipment" VBox.vgrow="ALWAYS" styleClass="modern-table">
+                <columns>
+                    <TableColumn fx:id="colType" text="Tipo" prefWidth="120"/>
+                    <TableColumn fx:id="colSerial" text="S/N" prefWidth="150"/>
+                    <TableColumn fx:id="colObs" text="Observaciones" prefWidth="250"/>
+                    <TableColumn fx:id="colActions" text="Acciones" prefWidth="120" resizable="false"/>
+                </columns>
+                </TableView>
+            </children>
+        </VBox>
+        
+    </children>
+</VBox>

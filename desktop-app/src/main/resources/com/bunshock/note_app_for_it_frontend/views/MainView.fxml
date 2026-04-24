@@ -7,8 +7,8 @@
 
 <BorderPane fx:id="rootPane" prefHeight="850" prefWidth="1275.0" 
             xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.bunshock.note_app_for_it_frontend.MainController"
-            stylesheets="@styles.css">
+            fx:controller="com.bunshock.note_app_for_it_frontend.controllers.MainController"
+            stylesheets="/com/bunshock/note_app_for_it_frontend/css/styles.css">
    <fx:define>
       <ToggleGroup fx:id="navigationGroup" />
    </fx:define>
@@ -24,7 +24,7 @@
                      <children>
                         <ImageView fx:id="imgLogo" fitWidth="120.0" preserveRatio="true">
                            <image>
-                              <Image url="@images/logo.jpg" />
+                              <Image url="/com/bunshock/note_app_for_it_frontend/images/logo.jpg" />
                            </image>
                         </ImageView>
                      </children>

@@ -1,6 +1,8 @@
-package com.bunshock.note_app_for_it_frontend;
+package com.bunshock.note_app_for_it_frontend.controllers;
 
 import java.io.IOException;
+
+import com.bunshock.note_app_for_it_frontend.utils.ViewFactory;
 
 import javafx.application.Platform;
 import javafx.concurrent.ScheduledService;
@@ -10,7 +12,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -18,36 +19,30 @@ import javafx.util.Duration;
 
 public class MainController {
 
-    // UI components
-    @FXML
-    private ImageView imgLogo;
-
     // User info labels
-    @FXML
-    private Label lblWelcome;
-    @FXML
-    private Label lblUsername;
+    @FXML private Label lblWelcome;
+    @FXML private Label lblUsername;
 
     // Server status indicators
-    @FXML
-    private Circle circleAD, circleGLPI;
-    @FXML private
-    Tooltip tooltipAD, tooltipGLPI;
+    @FXML private Circle circleAD, circleGLPI;
+    @FXML private Tooltip tooltipAD, tooltipGLPI;
 
     // Main content area where views will be swapped
-    @FXML
-    private StackPane contentArea;
-    private ViewFactory viewFactory = new ViewFactory();
+    @FXML private StackPane contentArea;
 
+    // Factory for persisting data across views
+    private final ViewFactory viewFactory = new ViewFactory();
+
+    // When a user clicks the "Generar Nota" button, we load the NoteGeneratorView into the content area
     @FXML
     private void handleShowGenerator() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("NoteGeneratorView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bunshock/note_app_for_it_frontend/views/NoteGeneratorView.fxml"));
             Parent view = loader.load();
             
             // Get the controller of the view we just loaded
             NoteGeneratorController controller = loader.getController();
-            // Inject the factory instance
+            // Inject the view factory instance
             controller.setViewFactory(this.viewFactory); 
             
             contentArea.getChildren().setAll(view);
