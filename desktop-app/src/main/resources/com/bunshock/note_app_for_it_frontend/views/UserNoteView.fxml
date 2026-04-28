@@ -59,25 +59,48 @@
            </children>
        </VBox>
 
-        <!-- Equipment details -->
-       <VBox spacing="10" VBox.vgrow="ALWAYS">
+       <Separator style="-fx-opacity: 0.5;"/>
+
+        <!-- Equipment detail tables -->
+       <VBox spacing="15" VBox.vgrow="ALWAYS">
             <children>
-                <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="DETALLE DEL EQUIPAMIENTO" style="-fx-font-weight: bold; -fx-text-fill: #0c8570; -fx-font-size: 13px;"/>
+
+                <!-- Equipment details - Asset -->
+                <VBox spacing="5" VBox.vgrow="ALWAYS">
                     <children>
-                        <Label text="DETALLES DEL EQUIPO" style="-fx-font-weight: bold; -fx-text-fill: #0c8570; -fx-font-size: 13px;"/>
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Button text="+ Agregar Item" onAction="#handleAddItem" style="-fx-background-color: #0c8570; -fx-text-fill: white; -fx-font-size: 11;"/>
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="EQUIPOS CON S/N (Notebooks, Monitores, etc.)" styleClass="form-section-caption"/>
+                            <Region HBox.hgrow="ALWAYS" />
+                            <Button text="+ Agregar" onAction="#handleAddItem" styleClass="add-button-small"/>
+                        </HBox>
+                        <TableView fx:id="tblAssets" styleClass="modern-table" prefHeight="200">
+                            <columns>
+                                <TableColumn fx:id="colAssetType" text="TIPO" prefWidth="100"/>
+                                <TableColumn fx:id="colAssetBrand" text="MARCA" prefWidth="100"/>
+                                <TableColumn fx:id="colAssetSerial" text="S/N" prefWidth="150"/>
+                                <TableColumn fx:id="colAssetAF" text="A/F" prefWidth="80"/>
+                                <TableColumn fx:id="colAssetActions" text="ACCIONES" prefWidth="80"/>
+                            </columns>
+                        </TableView>
                     </children>
-                </HBox>
-                
-                <TableView fx:id="tblEquipment" VBox.vgrow="ALWAYS" styleClass="modern-table">
-                <columns>
-                    <TableColumn fx:id="colType" text="Tipo" prefWidth="120"/>
-                    <TableColumn fx:id="colSerial" text="S/N" prefWidth="150"/>
-                    <TableColumn fx:id="colObs" text="Observaciones" prefWidth="250"/>
-                    <TableColumn fx:id="colActions" text="Acciones" prefWidth="120" resizable="false"/>
-                </columns>
-                </TableView>
+                </VBox>
+
+                <!-- Equipment details - Countable -->
+                <VBox spacing="5" VBox.vgrow="ALWAYS">
+                    <children>
+                        <Label text="PERIFÉRICOS Y OTROS (Por Cantidad)" styleClass="form-section-caption"/>
+                        <TableView fx:id="tblCountables" styleClass="modern-table" prefHeight="150">
+                            <columns>
+                                <TableColumn fx:id="colCountType" text="TIPO" prefWidth="100"/>
+                                <TableColumn fx:id="colCountBrand" text="MARCA" prefWidth="100"/>
+                                <TableColumn fx:id="colCountQty" text="CANT." prefWidth="60"/>
+                                <TableColumn fx:id="colCountObs" text="OBSERVACIONES" prefWidth="250"/>
+                                <TableColumn fx:id="colCountActions" text="ACCIONES" prefWidth="80"/>
+                            </columns>
+                        </TableView>
+                    </children>
+                </VBox>
             </children>
         </VBox>
         

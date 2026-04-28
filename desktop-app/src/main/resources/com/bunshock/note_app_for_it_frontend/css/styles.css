@@ -184,12 +184,77 @@
     -fx-font-size: 13px;
 }
 
+/* -- EQUIPMENT TABLE - START  */
+
+/* Add item button */
+.add-button-small {
+    -fx-background-color: #0c8570;
+    -fx-text-fill: white;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4;
+    -fx-cursor: hand;
+}
+
 /* User note generation: Equipment table */
 .modern-table {
-    -fx-background-color: white;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
     -fx-border-color: #e2e8f0;
-    -fx-border-radius: 5;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
 }
+
+/* Header Styling: Teal Background with White Caps Text */
+.modern-table .column-header-background {
+    -fx-background-color: #0c8570;
+    -fx-background-radius: 7 7 0 0;
+    -fx-padding: 0;
+}
+
+.modern-table .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 35;
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-width: 0 1 0 0;
+}
+
+.modern-table .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+}
+
+/* Removing the ugly "empty" extra column space */
+.modern-table .filler {
+    -fx-background-color: transparent;
+}
+
+/* Row Styling */
+.modern-table .table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: #f1f5f9;
+    -fx-border-width: 0 0 1 0; /* Horizontal lines only */
+    -fx-cell-size: 40;
+}
+
+/* Hover and Selection: Soft Teal instead of default Blue */
+.modern-table .table-row-cell:hover {
+    -fx-background-color: #f0fdfa;
+}
+
+.modern-table .table-row-cell:selected {
+    -fx-background-color: #e6fffa;
+    -fx-text-fill: #0c8570;
+}
+
+/* Remove internal focus ring */
+.modern-table:focused {
+    -fx-background-insets: 0;
+}
+
+/* -- EQUIPMENT TABLE - END  */
 
 /* User note generation: Observation text field */
 .modern-text-field-small {

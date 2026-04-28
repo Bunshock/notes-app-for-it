@@ -2,16 +2,17 @@ package com.bunshock.note_app_for_it_frontend.controllers;
 
 import java.io.IOException;
 
-import com.bunshock.note_app_for_it_frontend.models.EquipmentItem;
+import com.bunshock.note_app_for_it_frontend.models.AssetItem;
+import com.bunshock.note_app_for_it_frontend.models.CountableItem;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
@@ -31,16 +32,20 @@ public class UserNoteController {
     @FXML private TextField txtUserDni;
     @FXML private TextField txtUserName;
 
-    // Equipment table
-    @FXML private TableView<EquipmentItem> tblEquipment;
-    @FXML private TableColumn<EquipmentItem, String> colType;
-    @FXML private TableColumn<EquipmentItem, String> colSerial;
-    @FXML private TableColumn<EquipmentItem, String> colObs;
-    @FXML private TableColumn<EquipmentItem, Void> colActions;
-    
-    // Observations
-    @FXML
-    private TextArea txtObservations;
+    // Equipment tables
+    // Assets Table (S/N)
+    @FXML private TableView<AssetItem> tblAssets;
+    @FXML private TableColumn<AssetItem, String> colAssetType, colAssetBrand, colAssetSerial, colAssetAF;
+    @FXML private TableColumn<AssetItem, Void> colAssetActions;
+
+    // Countables Table (Quantity)
+    @FXML private TableView<CountableItem> tblCountables;
+    @FXML private TableColumn<CountableItem, String> colCountType, colCountBrand;
+    @FXML private TableColumn<CountableItem, Integer> colCountQty;
+    @FXML private TableColumn<CountableItem, Void> colCountActions;
+
+    private ObservableList<AssetItem> assetList = FXCollections.observableArrayList();
+    private ObservableList<CountableItem> countableList = FXCollections.observableArrayList();
 
     public void initialize() {
         // Setup note type toggle group
@@ -53,13 +58,8 @@ public class UserNoteController {
 
         btnTypeEntrega.setSelected(true);
 
-        // Setup table columns
-        colType.setCellValueFactory(cellData -> cellData.getValue().typeProperty());
-        colSerial.setCellValueFactory(cellData -> cellData.getValue().serialProperty());
-        colObs.setCellValueFactory(cellData -> cellData.getValue().observationsProperty());
-
-        // Initialize empty table
-        tblEquipment.setItems(FXCollections.observableArrayList());
+        setupAssetTable();
+        setupCountableTable();
         
         // Add a listener to DNI to simulate AD lookup later
         txtUserDni.textProperty().addListener((obs, oldVal, newVal) -> {
@@ -82,28 +82,46 @@ public class UserNoteController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bunshock/note_app_for_it_frontend/views/ItemDialogView.fxml"));
             Parent root = loader.load();
-            
+
+            ItemDialogController controller = loader.getController();
+            // Crucial: Pass the reference of 'this' controller to the dialog
+            controller.setParentController(this); 
+
             Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL); // Blocks main window
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Agregar Equipamiento");
             stage.setScene(new Scene(root));
-            
-            // Pass the list to the dialog controller so it can add the item back
-            ItemDialogController controller = loader.getController();
-            controller.setEquipmentList(tblEquipment.getItems());
-            
             stage.showAndWait();
         } catch (IOException e) {
+            System.err.println("Error loading ItemDialogView: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
     @FXML
     private void handleRemoveItem() {
-        EquipmentItem selected = tblEquipment.getSelectionModel().getSelectedItem();
-        if (selected != null) {
-            tblEquipment.getItems().remove(selected);
-        }
+        System.out.println("Removiendo item seleccionado");
     }
+
+    private void setupAssetTable() {
+        colAssetType.setCellValueFactory(d -> d.getValue().getType());
+        colAssetBrand.setCellValueFactory(d -> d.getValue().getBrand());
+        colAssetSerial.setCellValueFactory(d -> d.getValue().getSerial());
+        colAssetAF.setCellValueFactory(d -> d.getValue().getAf());
+        tblAssets.setItems(assetList);
+        // setupActionsColumn(colAssetActions); // Reuse your action logic here
+    }
+
+    private void setupCountableTable() {
+        colCountType.setCellValueFactory(d -> d.getValue().getType());
+        colCountBrand.setCellValueFactory(d -> d.getValue().getBrand());
+        colCountQty.setCellValueFactory(d -> d.getValue().getQuantity().asObject());
+        tblCountables.setItems(countableList);
+        // setupActionsColumn(colCountActions);
+    }
+
+    // Methods for the Dialog to call
+    public void addAsset(AssetItem item) { assetList.add(item); }
+    public void addCountable(CountableItem item) { countableList.add(item); }
 
 }

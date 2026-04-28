@@ -5,16 +5,19 @@ import javafx.beans.property.StringProperty;
 
 public class EquipmentItem {
     private final StringProperty type;
-    private final StringProperty serial;
+    private final StringProperty brand;
+    private final StringProperty model;
     private final StringProperty observations;
 
-    public EquipmentItem(String type, String serial, String observations) {
+    public EquipmentItem(String type, String brand, String model, String observations) {
         this.type = new SimpleStringProperty(type);
-        this.serial = new SimpleStringProperty(serial);
+        this.brand = new SimpleStringProperty(brand);
+        this.model = new SimpleStringProperty(model);
         this.observations = new SimpleStringProperty(observations);
     }
 
-    public StringProperty typeProperty() { return type; }
-    public StringProperty serialProperty() { return serial; }
-    public StringProperty observationsProperty() { return observations; }
+    public StringProperty getType() { return type; }
+    public StringProperty getBrand() { return brand; }
+    public StringProperty getModel() { return model; }
+    public StringProperty getObservations() { return observations; }
 }
